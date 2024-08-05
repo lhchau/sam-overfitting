@@ -79,12 +79,14 @@ def loop_one_epoch(
                 acc = 100.*correct/total
                 progress_bar(batch_idx, len(dataloader), 'Loss: %.3f | Acc: %.3f%% (%d/%d)'
                             % (loss_mean, acc, correct, total))
+            gen_gap = checkpoint['train_acc'] - acc
         if loop_type == 'val':
             if acc > best_acc:
                 print('Saving best checkpoint ...')
                 state = {
                     'net': net.state_dict(),
                     'acc': acc,
+                    'train_acc': logging_dict['Train/acc'],
                     'loss': loss,
                     'epoch': epoch
                 }
@@ -94,7 +96,8 @@ def loop_one_epoch(
                 torch.save(state, os.path.join(save_path, 'ckpt_best.pth'))
                 best_acc = acc
             logging_dict[f'{loop_type.title()}/best_acc'] = best_acc
-            logging_dict[f'{loop_type.title()}/gen_gap'] = logging_dict['Train/acc'] - acc
+            gen_gap = logging_dict['Train/acc'] - acc
+        logging_dict[f'{loop_type.title()}/gen_gap'] = gen_gap
                 
     logging_dict[f'{loop_type.title()}/loss'] = loss_mean
     logging_dict[f'{loop_type.title()}/acc'] = acc
