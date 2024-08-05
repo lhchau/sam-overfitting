@@ -1,6 +1,6 @@
 dataloader:
   data_name: cifar100
-  batch_size: 256
+  batch_size: 128
 model:
   model_name: resnet18
 optimizer:
