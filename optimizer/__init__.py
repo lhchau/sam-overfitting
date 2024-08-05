@@ -5,16 +5,10 @@ from .sam import SAM
 def get_optimizer(
     net,
     opt_name='sam',
-    opt_hyperparameter={}):
+    opt_hyperpara={}):
     if opt_name == 'sam':
-        return SAM(
-            net.parameters(), 
-            **opt_hyperparameter
-        )
+        return SAM(net.parameters(), **opt_hyperpara)
     elif opt_name == 'sgd':
-        return SGD(
-            net.parameters(), 
-            **opt_hyperparameter
-        )
+        return SGD(net.parameters(), **opt_hyperpara)
     else:
         raise ValueError("Invalid optimizer!!!")

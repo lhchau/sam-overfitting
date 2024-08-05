@@ -93,7 +93,7 @@ def loop_one_epoch(
                 torch.save(state, os.path.join(save_path, 'ckpt_best.pth'))
                 best_acc = acc
             logging_dict[f'{loop_type.title()}/best_acc'] = best_acc
-            logging_dict[f'{loop_type.title()}/gen_gap'] = logging_dict['train/acc'] - acc
+            logging_dict[f'{loop_type.title()}/gen_gap'] = logging_dict['Train/acc'] - acc
                 
     logging_dict[f'{loop_type.title()}/loss'] = loss_mean
     logging_dict[f'{loop_type.title()}/acc'] = acc

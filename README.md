@@ -17,6 +17,11 @@
     - ResNet18: widen_factor = 1, 1.25, 1.5, 2
     - ResNet34: widen_factor = 1, 1.25, 1.5, 2
 
+Run command:
+```{bash}
+python train.py config/train_sam.yaml --optimizer.rho=0.05 --model.model_name=resnet18 --model.widen_factor=2 --logging.framework_name=None
+```
+
 4. What is missing?
 - Which parts of SAM benefit wider ResNet?
 - The effect of depth?

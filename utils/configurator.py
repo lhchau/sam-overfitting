@@ -35,18 +35,15 @@ def exec_configurator():
             key, val = arg.split('=')
             key = key[2:]
             parent_key, child_key = key.split('.')
-            if key in cfg:
-                try:
-                    # attempt to eval it it (e.g. if bool, number, or etc)
-                    attempt = literal_eval(val)
-                except (SyntaxError, ValueError):
-                    # if that goes wrong, just use the string
-                    attempt = val
-                # ensure the types match ok
-                # assert type(attempt) == type(globals()[key])
-                # cross fingers
-                print(f"Overriding: {key} = {attempt}")
-                cfg[parent_key][child_key] = attempt
-            else:
-                raise ValueError(f"Unknown config key: {key}")
+            try:
+                # attempt to eval it it (e.g. if bool, number, or etc)
+                attempt = literal_eval(val)
+            except (SyntaxError, ValueError):
+                # if that goes wrong, just use the string
+                attempt = val
+            # ensure the types match ok
+            # assert type(attempt) == type(globals()[key])
+            # cross fingers
+            print(f"Overriding: {key} = {attempt}")
+            cfg[parent_key][child_key] = attempt
     return cfg

@@ -64,17 +64,6 @@ def get_logging_name(cfg):
         else:
             logging_name += f'_{key[:2]}={value}'
         
-    logging_name += '_SCH'
-    for key, value in cfg['scheduler'].items():
-        if isinstance(value, dict):
-            for in_key, in_value in value.items():
-                if isinstance(in_value, str):
-                    _in_value = in_value[:5]
-                else: _in_value = in_value
-                logging_name += f'_{in_key[:2]}={_in_value}'
-        else:
-            logging_name += f'_{key[:2]}={value}'
-
     logging_name += '_DATA'
     for key, value in cfg['dataloader'].items():
         if isinstance(value, dict):

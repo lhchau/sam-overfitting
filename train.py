@@ -51,7 +51,8 @@ print(f'==> Number of parameters in {cfg["model"]}: {total_params}')
 ################################
 criterion = nn.CrossEntropyLoss().to(device)
 sch = cfg['trainer'].get('sch', None)
-optimizer = get_optimizer(net, **cfg['optimizer'])
+opt_name = cfg['optimizer'].pop('opt_name', None)
+optimizer = get_optimizer(net, opt_name, cfg['optimizer'])
 scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=EPOCHS)
 
 ################################

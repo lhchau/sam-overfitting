@@ -5,10 +5,9 @@ model:
   model_name: resnet18
 optimizer:
   opt_name: sgd
-  opt_hyperparameter:
-    lr: 0.1
-    momentum: 0.9
-    weight_decay: 0.0005
+  lr: 0.1
+  momentum: 0.9
+  weight_decay: 0.0005
 scheduler:
   sch_name: cosine
   sch_hyperparameter:
