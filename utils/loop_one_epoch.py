@@ -30,7 +30,8 @@ def loop_one_epoch(
                 outputs = net(inputs)
                 first_loss = criterion(outputs, targets)
                 first_loss.backward()
-                optimizer.first_step(zero_grad=True)
+                optimizer.step()
+                optimizer.zero_grad()
             else:
                 enable_running_stats(net)  # <- this is the important line
                 outputs = net(inputs)

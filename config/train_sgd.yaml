@@ -8,10 +8,6 @@ optimizer:
   lr: 0.1
   momentum: 0.9
   weight_decay: 0.0005
-scheduler:
-  sch_name: cosine
-  sch_hyperparameter:
-    T_max: 200
 trainer:
   epochs: 200
   seed: 42
